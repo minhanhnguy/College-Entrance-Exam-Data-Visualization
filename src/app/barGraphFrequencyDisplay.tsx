@@ -24,13 +24,12 @@ import {
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 
 const CustomTooltip = ({ active, payload, label }: any) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="custom-tooltip flex flex-row justify-around items-center">
+  /* <div className="custom-tooltip flex flex-row justify-around items-center">
         <div className="w-[10px] h-[10px] bg-red-500 rounded-md mr-1 ml-0.5 mt-px"></div>
         <p className="label">{`Student(s): ${payload[0].value}`}</p>
-      </div>
-    );
+      </div> */
+  if (active && payload && payload.length) {
+    return <div></div>;
   }
 
   return null;
@@ -52,22 +51,22 @@ function Subject(subject: any) {
     return <div>Loading...</div>; // Display a loading message while data is being fetched
   }
 
-  var mathData = data.map((student) => student.Math);
-  mathData = mathData.filter((score) => score != null);
+  var subjectData = data.map((student) => student[subject.subject]);
+  subjectData = subjectData.filter((score) => score != 0);
 
-  mathData = mathData.sort();
+  subjectData = subjectData.sort();
 
-  const mathFrequency = new Map();
+  const subjectFrequency = new Map();
 
-  for (let n of mathData) {
-    if (mathFrequency.has(n)) {
-      mathFrequency.set(n, mathFrequency.get(n) + 1);
+  for (let n of subjectData) {
+    if (subjectFrequency.has(n)) {
+      subjectFrequency.set(n, subjectFrequency.get(n) + 1);
     } else {
-      mathFrequency.set(n, 1);
+      subjectFrequency.set(n, 1);
     }
   }
 
-  const chartData = Array.from(mathFrequency, ([Score, Frequency]) => ({
+  const chartData = Array.from(subjectFrequency, ([Score, Frequency]) => ({
     Score,
     Frequency,
   }));
@@ -84,34 +83,30 @@ function Subject(subject: any) {
       <ComposedChart
         data={chartData}
         margin={{
-          top: -100,
+          top: -40,
           right: -5,
-          bottom: 10,
+          bottom: -10,
           left: -5,
         }}
       >
         <CartesianGrid vertical={false} horizontal={false} />
-        <XAxis
-          dataKey="Score"
-          tickLine={false}
-          axisLine={false}
-          tickMargin={8}
-        />
+        <XAxis dataKey="~" tickLine={false} axisLine={false} tickMargin={8} />
         <Bar
           dataKey="Frequency"
           barSize={35}
           fill="hsl(var(--chart-5))"
           radius={2}
         />
-        <Line
+        {/* <Line
           type="natural"
           dataKey="Frequency"
           stroke="hsl(var(--chart-1))"
           strokeWidth={2}
           dot={false}
-        />
+        /> */}
         <Tooltip
-          cursor={{ stroke: "#BABABA", strokeWidth: 1, strokeDasharray: "5 5" }}
+          /*cursor={{ stroke: "#BABABA", strokeWidth: 1, strokeDasharray: "5 5" }}
+          content={<CustomTooltip />}*/
           content={<CustomTooltip />}
         />
       </ComposedChart>
@@ -119,17 +114,20 @@ function Subject(subject: any) {
   );
 }
 
-export default function DrawBarGraphFrequency() {
+export default function DrawBarGraphFrequency(subject: any) {
   return (
-    <Card className="w-[600px] rounded-xl h-auto transition-transform duration-300 ease-in-out hover:scale-105 hover:cursor-pointer">
+    <Card
+      className="rounded-xl h-auto transition-transform duration-300 ease-in-out hover:scale-110"
+      style={{ width: 600 }}
+    >
       <CardHeader className="mb-0 pb-0">
-        <CardTitle>Card Title</CardTitle>
+        <CardTitle>{subject.subject}</CardTitle>
         <CardDescription className="w-[190px]">
           Card Description
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Subject subject="Math"></Subject>
+        <Subject subject={subject.subject}></Subject>
       </CardContent>
     </Card>
   );
