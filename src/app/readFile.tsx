@@ -1,14 +1,34 @@
-"use client";
-import { useState, useEffect } from "react";
-import useFetch from "@/hook/useFetch";
+import fs from "fs";
+import Papa from "papaparse";
 
-const [data, setData] = useState<any[]>([]);
-const fetchCsvData = useFetch();
+export default function readFile(): Promise<Array<Record<string, any>>> {
+  const csvFilePath: string = "./public/CollegeEntranceExamData.csv"; // Ensure the path is correct
 
-useEffect(() => {
-  fetchCsvData("./public/CollegeEntranceExamData.csv", setData);
-}, []);
+  return new Promise((resolve, reject) => {
+    fs.readFile(csvFilePath, "utf8", (err, data) => {
+      if (err) {
+        console.error("Error reading file:", err);
+        reject(err); // Reject the promise if there's an error
+        return;
+      }
 
-console.log(data);
+      let csvData: Array<Record<string, any>> = [];
 
-export default data;
+      // Parse the CSV data using Papa.parse
+      Papa.parse(data, {
+        header: true,
+        step: (result: Papa.ParseResult<any>): void => {
+          csvData.push(result.data);
+        },
+        complete: (): void => {
+          console.log("Complete", csvData.length, "records.");
+          resolve(csvData); // Resolve the promise with the parsed data
+        },
+        error: (error: any) => {
+          console.error("Error parsing CSV:", error);
+          reject(error); // Reject the promise if parsing fails
+        },
+      });
+    });
+  });
+}
