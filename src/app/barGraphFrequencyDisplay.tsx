@@ -43,7 +43,7 @@ async function returnFrequency(
   let subjectData = data.map((student) => student[subject.subject]);
   subjectData = subjectData.filter((score) => score !== 0 && score !== null);
 
-  subjectData.sort((a, b) => a - b); // Sorting numeric data in ascending order
+  subjectData.sort((a, b) => a - b);
 
   const subjectFrequency = new Map<number, number>();
 
@@ -64,12 +64,12 @@ async function returnFrequency(
     })
   );
 
-  return chartData; // Return as a Promise of ChartData array
+  return chartData;
 }
 
 interface BarGraphProps {
   subject: { subject: string };
-  csvData: StudentData[]; // Make sure this is included
+  csvData: StudentData[];
 }
 
 export default function BarGraphFrequencyDisplay({
