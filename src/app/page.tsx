@@ -5,6 +5,10 @@ import DrawBarGraphFrequency from "./barGraphFrequencyDisplay";
 
 type StudentData = { [key: string]: number };
 
+function numberWithCommas(x: Number) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 export default function Home() {
   const [csvData, setCsvData] = useState<StudentData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -37,40 +41,53 @@ export default function Home() {
   }
 
   return (
-    <div className="h-[1300px] flex justify-evenly items-center flex-wrap">
-      <DrawBarGraphFrequency subject={{ subject: "Math" }} csvData={csvData} />{" "}
-      <DrawBarGraphFrequency
-        subject={{ subject: "Literature" }}
-        csvData={csvData}
-      />{" "}
-      <DrawBarGraphFrequency
-        subject={{ subject: "Foreign Language" }}
-        csvData={csvData}
-      />{" "}
-      <DrawBarGraphFrequency
-        subject={{ subject: "Physic" }}
-        csvData={csvData}
-      />{" "}
-      <DrawBarGraphFrequency
-        subject={{ subject: "Chemistry" }}
-        csvData={csvData}
-      />{" "}
-      <DrawBarGraphFrequency
-        subject={{ subject: "Biology" }}
-        csvData={csvData}
-      />{" "}
-      <DrawBarGraphFrequency
-        subject={{ subject: "History" }}
-        csvData={csvData}
-      />{" "}
-      <DrawBarGraphFrequency
-        subject={{ subject: "Geography" }}
-        csvData={csvData}
-      />{" "}
-      <DrawBarGraphFrequency
-        subject={{ subject: "Civic Education" }}
-        csvData={csvData}
-      />{" "}
+    <div>
+      <h1>General Studies:</h1>
+      <p>Number of General Tests: {numberWithCommas(csvData.length)}</p>
+      <div className="h-[500px] flex justify-evenly items-center flex-wrap">
+        <DrawBarGraphFrequency
+          subject={{ subject: "Math" }}
+          csvData={csvData}
+        />{" "}
+        <DrawBarGraphFrequency
+          subject={{ subject: "Literature" }}
+          csvData={csvData}
+        />{" "}
+        <DrawBarGraphFrequency
+          subject={{ subject: "Foreign Language" }}
+          csvData={csvData}
+        />{" "}
+      </div>
+      <h1>Natural Science:</h1>
+      <div className="h-[500px] flex justify-evenly items-center flex-wrap">
+        <DrawBarGraphFrequency
+          subject={{ subject: "Physic" }}
+          csvData={csvData}
+        />{" "}
+        <DrawBarGraphFrequency
+          subject={{ subject: "Chemistry" }}
+          csvData={csvData}
+        />{" "}
+        <DrawBarGraphFrequency
+          subject={{ subject: "Biology" }}
+          csvData={csvData}
+        />{" "}
+      </div>
+      <h1>Social Science:</h1>
+      <div className="h-[500px] flex justify-evenly items-center flex-wrap">
+        <DrawBarGraphFrequency
+          subject={{ subject: "History" }}
+          csvData={csvData}
+        />{" "}
+        <DrawBarGraphFrequency
+          subject={{ subject: "Geography" }}
+          csvData={csvData}
+        />{" "}
+        <DrawBarGraphFrequency
+          subject={{ subject: "Civic Education" }}
+          csvData={csvData}
+        />{" "}
+      </div>
     </div>
   );
 }

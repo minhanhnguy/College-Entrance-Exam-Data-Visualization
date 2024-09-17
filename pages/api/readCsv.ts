@@ -4,7 +4,11 @@ import path from "path";
 import Papa from "papaparse";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const csvFilePath = path.join(process.cwd(), "public", "CollegeEntranceExamData.csv");
+  const csvFilePath = path.join(
+    process.cwd(),
+    "public",
+    "CollegeEntranceExamData.csv"
+  );
 
   try {
     const fileData = fs.readFileSync(csvFilePath, "utf8");
@@ -19,7 +23,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       complete: () => {
         res.status(200).json(csvData);
       },
-      error: (error:any) => {
+      error: (error: any) => {
         console.error("Error parsing CSV:", error);
         res.status(500).json({ error: "Failed to parse CSV" });
       },
@@ -31,7 +35,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 }
 
 export const config = {
-    api: {
-      responseLimit: false,
-    },
-  }
+  api: {
+    responseLimit: false,
+  },
+};
