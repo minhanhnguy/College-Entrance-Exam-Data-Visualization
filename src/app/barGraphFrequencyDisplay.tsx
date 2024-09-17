@@ -1,6 +1,18 @@
 "use client";
 
 import { useState, useEffect } from "react";
+
+import { Button } from "@/components/ui/button";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
 import {
   ComposedChart,
   Bar,
@@ -10,24 +22,26 @@ import {
   Tooltip,
 } from "recharts";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 
 type StudentData = { [key: string]: number };
 type ChartData = { Score: number; Frequency: number };
 
-const CustomTooltip = ({ active, payload }: any) => {
+const CustomTooltipSmall = ({ active, payload }: any) => {
+  if (active && payload && payload.length) {
+    return <div></div>;
+  }
+
+  return null;
+};
+
+const CustomTooltipBig = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
       <div className="custom-tooltip flex flex-row justify-around items-center">
         <div className="w-[10px] h-[10px] bg-red-500 rounded-md mr-1 ml-0.5 mt-px"></div>
-        <p className="label">{`Student(s): ${payload[0].value}`}</p>
+        <p className="label">{`Score ${label} : ${payload[0].value} Students`}</p>
       </div>
     );
   }
@@ -41,7 +55,7 @@ async function returnFrequency(
 ): Promise<ChartData[]> {
   let numberOfStudent = 0;
   let subjectData = data.map((student) => student[subject.subject]);
-  subjectData = subjectData.filter((score) => score !== 0 && score !== null);
+  subjectData = subjectData.filter((score) => score > 0);
 
   subjectData.sort((a, b) => a - b);
 
@@ -96,19 +110,66 @@ export default function BarGraphFrequencyDisplay({
   } satisfies ChartConfig;
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="flex justify-center items-center">Loading...</div>;
   }
 
   return (
-    <Card
-      className="rounded-xl h-auto transition-transform duration-300 ease-in-out hover:scale-108"
-      style={{ width: 600 }}
-    >
+    <Card className="w-[600px] rounded-xl h-auto">
       <CardHeader className="mb-0 pb-0">
-        <CardTitle>{subject.subject}</CardTitle>
-        <CardDescription className="w-[190px]">
-          Number of students:
-        </CardDescription>
+        <CardTitle className="flex justify-between">
+          {subject.subject}
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="outline" className="rounded-xl">
+                Open
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[1425px]" id="dialog">
+              <DialogHeader>
+                <DialogTitle>
+                  <div className="" id="dialogTitle">
+                    {subject.subject}
+                  </div>
+                </DialogTitle>
+                <DialogDescription>
+                  <ChartContainer config={chartConfig}>
+                    <ComposedChart
+                      data={chartData}
+                      margin={{
+                        top: 0,
+                        right: -5,
+                        bottom: 0,
+                        left: -5,
+                      }}
+                    >
+                      <CartesianGrid vertical={false} horizontal={false} />
+                      <XAxis
+                        dataKey={"Score"}
+                        tickLine={false}
+                        axisLine={false}
+                        tickMargin={2}
+                      />
+                      <Bar
+                        dataKey="Frequency"
+                        barSize={35}
+                        fill="hsl(var(--chart-5))"
+                        radius={2}
+                      />
+                      <Line
+                        type="natural"
+                        dataKey="Frequency"
+                        stroke="hsl(var(--chart-1))"
+                        strokeWidth={2}
+                        dot={false}
+                      />
+                      <Tooltip content={<CustomTooltipBig />} />
+                    </ComposedChart>
+                  </ChartContainer>
+                </DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -117,16 +178,16 @@ export default function BarGraphFrequencyDisplay({
             margin={{
               top: 0,
               right: -5,
-              bottom: -10,
+              bottom: -25,
               left: -5,
             }}
           >
             <CartesianGrid vertical={false} horizontal={false} />
             <XAxis
-              dataKey="Score"
+              dataKey={"Score"}
               tickLine={false}
               axisLine={false}
-              tickMargin={8}
+              tickMargin={2}
             />
             <Bar
               dataKey="Frequency"
@@ -134,14 +195,6 @@ export default function BarGraphFrequencyDisplay({
               fill="hsl(var(--chart-5))"
               radius={2}
             />
-            <Line
-              type="natural"
-              dataKey="Frequency"
-              stroke="hsl(var(--chart-1))"
-              strokeWidth={2}
-              dot={false}
-            />
-            <Tooltip content={<CustomTooltip />} />
           </ComposedChart>
         </ChartContainer>
       </CardContent>

@@ -75,3 +75,9 @@
 .cursor-pointer:hover {
   cursor: pointer;
 }
+#dialog {
+  border-radius: 10px;
+}
+#dialogTitle {
+  font-size: 32px;
+}

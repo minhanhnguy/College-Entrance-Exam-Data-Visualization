@@ -12,7 +12,6 @@ export default function Home() {
   useEffect(() => {
     const fetchCsvData = async () => {
       try {
-        // Fetch the CSV data from the API route
         const response = await fetch("/api/readCsv");
         if (!response.ok) {
           throw new Error("Failed to fetch CSV data");
@@ -30,12 +29,48 @@ export default function Home() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex h-screen justify-center items-center">
+        Loading...
+      </div>
+    );
   }
 
   return (
-    <div className="h-screen flex justify-evenly items-center">
-      <DrawBarGraphFrequency subject={{ subject: "Math" }} csvData={csvData} />
+    <div className="h-[1300px] flex justify-evenly items-center flex-wrap">
+      <DrawBarGraphFrequency subject={{ subject: "Math" }} csvData={csvData} />{" "}
+      <DrawBarGraphFrequency
+        subject={{ subject: "Literature" }}
+        csvData={csvData}
+      />{" "}
+      <DrawBarGraphFrequency
+        subject={{ subject: "Foreign Language" }}
+        csvData={csvData}
+      />{" "}
+      <DrawBarGraphFrequency
+        subject={{ subject: "Physic" }}
+        csvData={csvData}
+      />{" "}
+      <DrawBarGraphFrequency
+        subject={{ subject: "Chemistry" }}
+        csvData={csvData}
+      />{" "}
+      <DrawBarGraphFrequency
+        subject={{ subject: "Biology" }}
+        csvData={csvData}
+      />{" "}
+      <DrawBarGraphFrequency
+        subject={{ subject: "History" }}
+        csvData={csvData}
+      />{" "}
+      <DrawBarGraphFrequency
+        subject={{ subject: "Geography" }}
+        csvData={csvData}
+      />{" "}
+      <DrawBarGraphFrequency
+        subject={{ subject: "Civic Education" }}
+        csvData={csvData}
+      />{" "}
     </div>
   );
 }
