@@ -202,7 +202,7 @@ export default function BarGraphFrequencyDisplay({
                           type="monotone"
                           dataKey="Frequency"
                           stroke="hsl(143, 40%, 65%)"
-                          strokeWidth={2}
+                          strokeWidth={3}
                         />
                         <Tooltip
                           cursor={false}

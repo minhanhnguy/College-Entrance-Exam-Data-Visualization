@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import DrawBarGraphFrequency from "./barGraphFrequencyDisplay";
 import PieChartSocialAndNaturalScience from "./pieChartSocialAndNaturalScience";
+import PieChartMathScoreSummary from "./pieChartMathScoreSummary";
+import PieChartLiteratureScoreSummary from "./pieChartLiteratureScoreSummary";
 import DrawMap from "./drawMap";
 
 type StudentData = { [key: string]: number };
@@ -56,13 +58,28 @@ export default function Home() {
   return (
     <div className="relative">
       <h1 className="fill-foreground text-4xl font-bold absolute top-[5px] left-1/2 transform -translate-x-1/2 text-center">
-        Vietnam's National College Entrance Vietnam
+        Vietnam's National College Entrance Data Visualization
       </h1>
       <DrawMap />
-      <PieChartSocialAndNaturalScience
-        naturalScienceStudent={numberOfNaturalScienceStudent}
-        socialScienceStudent={numberOfSocialScienceStudent}
-      />
+      <div className="flex h-4/6">
+        <div className="w-1/3">
+          <h1 className="ml-[25px]">
+            Distribution of Social and Natural Science Students:
+          </h1>
+          <PieChartSocialAndNaturalScience
+            naturalScienceStudent={numberOfNaturalScienceStudent}
+            socialScienceStudent={numberOfSocialScienceStudent}
+          />
+        </div>
+        <div className="w-1/3">
+          <h1 className="ml-[25px]">Math Scores Distribution:</h1>
+          <PieChartMathScoreSummary></PieChartMathScoreSummary>
+        </div>
+        <div className="w-1/3">
+          <h1 className="ml-[25px]">Literature Scores Distribution:</h1>
+          <PieChartLiteratureScoreSummary></PieChartLiteratureScoreSummary>
+        </div>
+      </div>
       <div className="ml-[25px]">
         <h1 className="text-xl font-semibold">General Studies:</h1>
         <p className="font-extralight">
