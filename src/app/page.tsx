@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import DrawBarGraphFrequency from "./barGraphFrequencyDisplay";
+import PieChartSocialAndNaturalScience from "./pieChartSocialAndNaturalScience";
+import DrawMap from "./drawMap";
 
 type StudentData = { [key: string]: number };
 
@@ -40,11 +42,32 @@ export default function Home() {
     );
   }
 
+  let numberOfNaturalScienceStudent = 0;
+  let numberOfSocialScienceStudent = 0;
+  for (let n of csvData) {
+    if (n.Physic != 0) {
+      numberOfNaturalScienceStudent += 1;
+    }
+    if (n.Geography != 0) {
+      numberOfSocialScienceStudent += 1;
+    }
+  }
+
   return (
     <div>
-      <h1>General Studies:</h1>
-      <p>Number of General Tests: {numberWithCommas(csvData.length)}</p>
-      <div className="h-[500px] flex justify-evenly items-center flex-wrap">
+      <h1>Vietnam's National College Entrance Vietnam</h1>
+      <DrawMap></DrawMap>
+      <PieChartSocialAndNaturalScience
+        naturalScienceStudent={numberOfNaturalScienceStudent}
+        socialScienceStudent={numberOfSocialScienceStudent}
+      />
+      <div className="ml-[25px]">
+        <h1 className="text-xl font-semibold">General Studies:</h1>
+        <p className="font-extralight">
+          Number of General Tests (estimated): {numberWithCommas(1037279)}
+        </p>
+      </div>
+      <div className="h-[440px] flex justify-evenly items-center flex-wrap">
         <DrawBarGraphFrequency
           subject={{ subject: "Math" }}
           csvData={csvData}
@@ -58,8 +81,14 @@ export default function Home() {
           csvData={csvData}
         />{" "}
       </div>
-      <h1>Natural Science:</h1>
-      <div className="h-[500px] flex justify-evenly items-center flex-wrap">
+      <div className="ml-[25px]">
+        <h1 className="text-xl font-semibold">Natural Science:</h1>
+        <p className="font-extralight">
+          Number of Natural Science Tests (estimated):{" "}
+          {numberWithCommas(341880)}
+        </p>
+      </div>
+      <div className="h-[440px] flex justify-evenly items-center flex-wrap">
         <DrawBarGraphFrequency
           subject={{ subject: "Physic" }}
           csvData={csvData}
@@ -73,8 +102,13 @@ export default function Home() {
           csvData={csvData}
         />{" "}
       </div>
-      <h1>Social Science:</h1>
-      <div className="h-[500px] flex justify-evenly items-center flex-wrap">
+      <div className="ml-[25px]">
+        <h1 className="text-xl font-semibold">Social Science:</h1>
+        <p className="font-extralight">
+          Number of Social Science Tests (estimated): {numberWithCommas(695399)}
+        </p>
+      </div>
+      <div className="h-[440px] flex justify-evenly items-center flex-wrap">
         <DrawBarGraphFrequency
           subject={{ subject: "History" }}
           csvData={csvData}

@@ -154,9 +154,7 @@ export default function BarGraphFrequencyDisplay({
                     <div className="font-thin text-base z-0">
                       The Most Frequent Score: {mostScore}
                       <br />
-                      Number of Students: {numberWithCommas(
-                        numberOfStudents
-                      )}{" "}
+                      Number of Tests: {numberWithCommas(numberOfStudents)}{" "}
                       <br />
                       Average Score:{" "}
                       {(Math.round(averageScore * 10000) / 10000).toFixed(4)}
@@ -207,13 +205,13 @@ export default function BarGraphFrequencyDisplay({
                           fill="hsl(var(--chart-1))"
                           radius={4}
                         />
-                        <Line
+                        {/*<Line
                           type="natural"
                           dataKey="Frequency"
                           stroke="hsl(var(--chart-5))"
                           strokeWidth={2}
                           dot={false}
-                        />
+                        />*/}
                         <Tooltip
                           cursor={false}
                           content={<CustomTooltipBig />}

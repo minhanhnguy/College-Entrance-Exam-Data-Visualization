@@ -27,7 +27,7 @@
     --chart-2: 212 95% 68%;
     --chart-3: 216 92% 60%;
     --chart-4: 210 98% 78%;
-    --chart-5: 212 97% 87%;
+    --chart-5: 0 0% 0%;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -53,7 +53,7 @@
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --chart-5: 217 54% 23%;
   }
 }
 
@@ -80,4 +80,25 @@
 }
 #dialogTitle {
   font-size: 32px;
+}
+
+#content .info {
+  height: 20px;
+}
+
+#content .map path {
+  stroke: #fff;
+}
+
+#content .bounding-box rect {
+  fill: none;
+  stroke: #333;
+}
+
+#content .centroid {
+  display: none;
+}
+
+#content .centroid circle {
+  fill: red;
 }
