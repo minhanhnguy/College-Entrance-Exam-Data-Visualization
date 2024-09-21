@@ -20,6 +20,7 @@ import {
   XAxis,
   Line,
   Tooltip,
+  YAxis,
 } from "recharts";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -36,10 +37,6 @@ const CustomTooltipBig = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
       <div className="custom-tooltip flex flex-row justify-around items-center">
-        <div
-          className="w-[10px] h-[10px] rounded-xl mr-1 ml-0.5 mt-px"
-          style={{ backgroundColor: "hsl(var(--chart-1))" }}
-        ></div>
         <p className="label">{`${label} - ${numberWithCommas(
           payload[0].value
         )}`}</p>
@@ -185,33 +182,28 @@ export default function BarGraphFrequencyDisplay({
                       <ComposedChart
                         data={chartData}
                         margin={{
-                          top: 0, // Adjusting top margin to move chart up
+                          top: 10, // Adjusting top margin to move chart up
                           right: -5,
                           bottom: 80, // Slight bottom margin to give space below the chart
                           left: -5,
                         }}
                         className="z-10 relative"
                       >
-                        <CartesianGrid vertical={false} horizontal={false} />
-                        <XAxis
-                          dataKey={"Score"}
-                          tickLine={false}
-                          axisLine={false}
-                          tickMargin={2}
-                        />
+                        <CartesianGrid />
+                        <XAxis dataKey={"Score"} />
+                        <YAxis />
                         <Bar
                           dataKey="Frequency"
                           barSize={35}
-                          fill="hsl(var(--chart-1))"
-                          radius={4}
+                          fill="hsl(207, 44%, 49%)"
+                          radius={0}
                         />
-                        {/*<Line
-                          type="natural"
+                        <Line
+                          type="monotone"
                           dataKey="Frequency"
-                          stroke="hsl(var(--chart-5))"
+                          stroke="hsl(143, 40%, 65%)"
                           strokeWidth={2}
-                          dot={false}
-                        />*/}
+                        />
                         <Tooltip
                           cursor={false}
                           content={<CustomTooltipBig />}
@@ -237,17 +229,12 @@ export default function BarGraphFrequencyDisplay({
             }}
           >
             <CartesianGrid vertical={false} horizontal={false} />
-            <XAxis
-              dataKey={"Score"}
-              tickLine={false}
-              axisLine={false}
-              tickMargin={4}
-            />
+            <XAxis dataKey={"Score"} />
             <Bar
               dataKey="Frequency"
               barSize={35}
-              fill="hsl(var(--chart-1))"
-              radius={2}
+              fill="hsl(207, 44%, 49%)"
+              radius={0}
             />
           </ComposedChart>
         </ChartContainer>

@@ -1,0 +1,24 @@
+{
+    "Math": {
+        "greater_than_9": 4120,
+        "greater_than_8": 139423,
+        "greater_than_7": 273531,
+        "greater_than_6": 241002,
+        "greater_than_5": 169398,
+        "greater_than_4": 108091,
+        "greater_than_3": 64853,
+        "greater_than_2": 28255,
+        "others": 4158
+    },
+    "Literature": {
+        "greater_than_9": 42774,
+        "greater_than_8": 248027,
+        "greater_than_7": 307245,
+        "greater_than_6": 238449,
+        "greater_than_5": 125854,
+        "greater_than_4": 50088,
+        "greater_than_3": 17582,
+        "greater_than_2": 5597,
+        "others": 12959
+    }
+}

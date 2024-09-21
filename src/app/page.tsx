@@ -54,9 +54,11 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <h1>Vietnam's National College Entrance Vietnam</h1>
-      <DrawMap></DrawMap>
+    <div className="relative">
+      <h1 className="fill-foreground text-4xl font-bold absolute top-[5px] left-1/2 transform -translate-x-1/2 text-center">
+        Vietnam's National College Entrance Vietnam
+      </h1>
+      <DrawMap />
       <PieChartSocialAndNaturalScience
         naturalScienceStudent={numberOfNaturalScienceStudent}
         socialScienceStudent={numberOfSocialScienceStudent}

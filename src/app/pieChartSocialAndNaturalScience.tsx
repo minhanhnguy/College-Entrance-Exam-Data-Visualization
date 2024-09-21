@@ -24,11 +24,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
       <div className="custom-tooltip flex flex-row justify-around items-center">
-        <div
-          className="w-[10px] h-[10px] rounded-xl mr-1 ml-0.5 mt-px"
-          style={{ backgroundColor: "hsl(var(--chart-1))" }}
-        ></div>
-        <p className="label">{`${payload[0].name} - ${numberWithCommas(
+        <p className="label">{`${payload[0].name}: ${numberWithCommas(
           payload[0].value
         )}`}</p>
       </div>
@@ -46,12 +42,12 @@ export default function Component({
     {
       studentsType: "Social Science Students",
       students: socialScienceStudent,
-      fill: "hsl(var(--chart-1))",
+      fill: "hsl(243, 52%, 68%)",
     },
     {
       studentsType: "Natural Science Students",
       students: naturalScienceStudent,
-      fill: "hsl(var(--chart-3))",
+      fill: "hsl(143, 40%, 65%)",
     },
   ];
 
@@ -61,11 +57,11 @@ export default function Component({
     },
     SocialScienceStudents: {
       label: "Social Science",
-      color: "hsl(var(--chart-1))",
+      color: "hsl(243, 52%, 68%)",
     },
     NaturalScienceStudents: {
       label: "Natural Science ",
-      color: "hsl(var(--chart-3))",
+      color: "hsl(143, 40%, 65%)",
     },
   } satisfies ChartConfig;
 

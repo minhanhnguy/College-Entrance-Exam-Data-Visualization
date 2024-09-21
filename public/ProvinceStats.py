@@ -48,10 +48,15 @@ with open('./public/CollegeEntranceExamData.csv', newline='') as csvfile:
         if province_code in province_codes:
             province_scores[province_codes[province_code]].append(average_score)
 
-province_average_scores = {province: sum(scores) / len(scores) if scores else 0 
-                           for province, scores in province_scores.items()}
+province_statistics = {
+    province: {
+        'average_score': sum(scores) / len(scores) if scores else 0,
+        'student_count': len(scores)
+    }
+    for province, scores in province_scores.items()
+}
 
-with open('./public/province_average_scores.json', 'w') as jsonfile:
-    json.dump(province_average_scores, jsonfile, indent=4)
+with open('./public/province_statistics.json', 'w') as jsonfile:
+    json.dump(province_statistics, jsonfile, indent=4)
 
-print("Average scores have been saved to 'province_average_scores.json'.")
+print("Average scores and student count have been saved to 'province_statistics.json'.")
