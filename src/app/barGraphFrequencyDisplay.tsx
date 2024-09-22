@@ -125,6 +125,20 @@ export default function BarGraphFrequencyDisplay({
   }
   const averageScore = totalScore / numberOfStudents;
 
+  const medianScore =
+    chartData.length > 0
+      ? chartData.length % 2 == 0
+        ? chartData[Math.round(chartData.length / 2)].Score
+        : (
+            Math.round(
+              ((Number(chartData[Math.round(chartData.length / 2 - 1)].Score) +
+                Number(chartData[Math.round(chartData.length / 2)].Score)) /
+                2) *
+                4
+            ) / 4
+          ).toFixed(2)
+      : "No Data";
+
   return (
     <Card className="w-[600px] rounded-xl h-auto">
       <CardHeader className="mb-0 pb-0">
@@ -156,23 +170,7 @@ export default function BarGraphFrequencyDisplay({
                       Average Score:{" "}
                       {(Math.round(averageScore * 10000) / 10000).toFixed(4)}
                       <br />
-                      The Median Score:{" "}
-                      {chartData.length % 2 == 0
-                        ? chartData[Math.round(chartData.length / 2)].Score
-                        : (
-                            Math.round(
-                              ((Number(
-                                chartData[Math.round(chartData.length / 2 - 1)]
-                                  .Score
-                              ) +
-                                Number(
-                                  chartData[Math.round(chartData.length / 2)]
-                                    .Score
-                                )) /
-                                2) *
-                                4
-                            ) / 4
-                          ).toFixed(2)}
+                      The Median Score: {medianScore}
                       <br />
                       The Highest Score: {chartData[chartData.length - 1].Score}
                       <br />

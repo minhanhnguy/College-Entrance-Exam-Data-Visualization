@@ -6,9 +6,6 @@ import PieChartSocialAndNaturalScience from "./pieChartSocialAndNaturalScience";
 import PieChartMathScoreSummary from "./pieChartMathScoreSummary";
 import PieChartLiteratureScoreSummary from "./pieChartLiteratureScoreSummary";
 import DrawMapAverageScore from "./drawMapAverageScore";
-import DrawMapStudentCount from "./drawMapStudentCount";
-
-import { Switch } from "@/components/ui/switch";
 
 import {
   Card,
@@ -54,6 +51,8 @@ export default function Home() {
       </div>
     );
   }
+
+  console.log(csvData);
 
   let numberOfNaturalScienceStudent = 0;
   let numberOfSocialScienceStudent = 0;
