@@ -24,8 +24,8 @@ https://github.com/user-attachments/assets/c33fa8e6-d380-4236-bbd2-45787c8375ae
 
 1. **Clone the repository:**
    ```bash
-   git clone <repository-url>
-   cd <project-directory>
+   git clone https://github.com/minhanhnguy/College-Entrance-Exam-Data-Visualization.git
+   cd College-Entrance-Exam-Data-Visualization
    ```
 2. Install dependencies: Ensure you have Node.js installed, then run:
    ```bash
