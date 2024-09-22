@@ -1,7 +1,7 @@
 # Vietnam College Entrance Exam Data Visualization
 
 ## Overview
-This project visualizes data from Vietnam's College Entrance Exam, containing over 1,000,000 lines of data. It includes the following visualizations:
+This project visualizes data from Vietnam's College Entrance Exam, containing over 1,000,000 data of students. It includes the following visualizations:
 - **Heatmap** of average scores across different regions.
 - **Pie chart** representing the proportion of Natural Science and Social Science students.
 - **Math score summary** showing distribution trends.
