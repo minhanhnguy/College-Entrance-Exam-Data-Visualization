@@ -37,3 +37,5 @@ https://github.com/user-attachments/assets/c33fa8e6-d380-4236-bbd2-45787c8375ae
 - **Handling large datasets in Node.js for visualizations poses performance challenges.**
 - **Processing over 1,000,000 rows can lead to slow rendering times and occasional timeouts.**
 - **While optimizations have been implemented, there are still some errors due to the extensive data handling required for drawing charts.**
+
+[Data Source](https://www.kaggle.com/datasets/quangdang1/college-entrance-exam-scores-in-vietnam-2024)
