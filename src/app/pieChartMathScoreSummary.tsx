@@ -153,7 +153,7 @@ export default function PieChartMathScoreSummary() {
                       y={(viewBox.cy || 0) + 30}
                       className="fill-muted-foreground"
                     >
-                      Tests
+                      Students
                     </tspan>
                   </text>
                 );

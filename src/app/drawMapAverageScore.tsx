@@ -274,15 +274,15 @@ const GeoPathMeasures: React.FC = () => {
     const projection = d3
       .geoMercator()
       .scale(3400)
-      .translate([180, 280])
-      .center([102, 20]);
+      .translate([5.6, 7.5])
+      .center([101, 23.4]);
 
     const geoGenerator = d3.geoPath().projection(projection);
 
     const colorScale = d3
       .scaleLinear<string>()
-      .domain([5.5, 7.5])
-      .range(["#fad025", "#c0392b"])
+      .domain([5.5, 7.6])
+      .range(["#fad025", "#db2e1d"])
       .interpolate(d3.interpolateRgb);
 
     // Function to get color based on average score
@@ -360,7 +360,7 @@ const GeoPathMeasures: React.FC = () => {
         >
           Hover over a province
         </div>
-        <svg ref={svgRef} height="1250" className="w-screen">
+        <svg ref={svgRef} height="1050" className="w-screen">
           <g className="map"></g>
           <g id="bounding-box" className="bounding-box">
             <rect className="stroke-gray-800" fill="none"></rect>

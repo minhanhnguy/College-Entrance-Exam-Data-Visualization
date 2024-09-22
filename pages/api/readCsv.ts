@@ -7,7 +7,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const csvFilePath = path.join(
     process.cwd(),
     "public",
-    "CollegeEntranceExamData-Demo.csv"
+    "CollegeEntranceExamData.csv"
   );
 
   try {

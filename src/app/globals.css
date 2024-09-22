@@ -103,3 +103,7 @@
   font-size: 23px;
   font-weight: bold;
 }
+
+body {
+  overflow-x: hidden;
+}
