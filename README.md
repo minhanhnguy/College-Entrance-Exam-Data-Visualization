@@ -26,7 +26,7 @@ The project is built using:
    cd <project-directory>
    ```
 2. Install dependencies: Ensure you have Node.js installed, then run:
-   ``bash
+   ```bash
    npm install
    npm run dev
    ```
