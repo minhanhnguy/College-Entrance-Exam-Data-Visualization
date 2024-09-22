@@ -9,14 +9,16 @@ This project visualizes data from Vietnam's College Entrance Exam, containing ov
 - **Bar charts** for each subject's score distribution.
 
 The project is built using:
-- **Recharts**
-- **Shadcnui**
-- **Next.js**
+- **Recharts** - To draw bar charts and pie charts.
+- **Shadcnui** - For basic UI Components.
+- **D3.js** - To draw maps using GeoJSON and to build interactions.
+- **Next.js** 
 - **React.js**
-- **D3.js**
+
 
 ## Demo
-[Link to a demo video of the web application]
+
+https://github.com/user-attachments/assets/c33fa8e6-d380-4236-bbd2-45787c8375ae
 
 ## How to Install
 
