@@ -35,5 +35,6 @@ https://github.com/user-attachments/assets/c33fa8e6-d380-4236-bbd2-45787c8375ae
 
 ## Errors and Drawbacks
 - **Processing over 1,000,000 rows can lead to slow rendering times and occasional timeouts.**
+- **The webpage is not optimized for mobile devices or smaller screens.**
 
 [Data Source](https://www.kaggle.com/datasets/quangdang1/college-entrance-exam-scores-in-vietnam-2024)
